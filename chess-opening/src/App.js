@@ -1,21 +1,23 @@
 import './App.css';
-
+import Mychessboard from './mychessboard.js'
+import PoolGen from './poolgen';
 import { Chess } from 'chess.js'
 
-const chess = new Chess()
+const chessgame = new Chess()
 
-while (!chess.isGameOver()) {
-  const moves = chess.moves()
+while (!chessgame.isGameOver()) {
+  const moves = chessgame.moves()
   const move = moves[Math.floor(Math.random() * moves.length)]
-  chess.move(move)
+  chessgame.move(move)
 }
-console.log(chess.pgn())
+console.log(chessgame.pgn())
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World!</h1>
-	  <p>{chess.pgn()}</p>
+      <h1>Chess Opening Training</h1>
+      <Mychessboard position={chessgame} />
+      <PoolGen/>
     </div>
   );
 }
