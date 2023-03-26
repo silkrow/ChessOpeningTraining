@@ -1,0 +1,31 @@
+.grid-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+  }
+  
+  .grid-itemw {
+    aspect-ratio: 1;
+    background-color: rgba(238, 227, 158, 0.8);
+    display: flex;
+    justify-content: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  .grid-itemb {
+    aspect-ratio: 1;
+    background-color: rgba(107, 107, 6, 0.8);
+    display: flex;
+    justify-content: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
