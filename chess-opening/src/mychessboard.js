@@ -11,19 +11,39 @@ function drawboard(props) {
                 piece_img += query_piece.type; 
             } 
             if ((i + j)%2 === 0) {
-                blocks.push(<div className="grid-itemb"><img src={`${piece_img}.png`} alt=''></img></div>)
-            } else {
                 blocks.push(<div className="grid-itemw"><img src={`${piece_img}.png`} alt=''></img></div>)
+            } else {
+                blocks.push(<div className="grid-itemb"><img src={`${piece_img}.png`} alt=''></img></div>)
             }
         }
     return blocks;
 }
 
 function Mychessboard (props) {
+    if (props.choice === "begin") {
+        props.position.reset();
+    }
+    if (props.choice === "end"){
+        while (!props.position.isGameOver()) {
+            const moves = props.position.moves()
+            const move = moves[Math.floor(Math.random() * moves.length)]
+            props.position.move(move)
+        }
+    }
+
     return (
         <div>
             <p>{props.position.fen()}</p>
-            <div className="grid-container">
+            <div 
+                onMouseDown={(e) => {
+                    console.log('down') 
+                }}
+                onMouseUp={
+                    () => {
+                        console.log('up')
+                    }
+                }
+                className="grid-container">
                 {drawboard(props.position)}
             </div>
         </div>
