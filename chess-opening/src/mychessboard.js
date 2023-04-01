@@ -1,8 +1,6 @@
 // Author: Erkai Yu, 2023
 
 import './mychessboard.css';
-import { Chessboard } from './chessboard';
-import './chessboard.css'
 
 // -------------------------------- 
 // Own Features
@@ -54,8 +52,6 @@ function Mychessboard (props) {
     }
 
 
-   var board1 = Chessboard('board1', 'start')
-
     return (
         <div>
             <p>{props.position.fen()}</p>
@@ -77,7 +73,6 @@ function Mychessboard (props) {
                 className="grid-container">
                 {drawboard(props.position)}
             </div>
-            <div id="board1" style="width: 400px"></div>
         </div>
     )
 }
