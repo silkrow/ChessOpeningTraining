@@ -2,9 +2,24 @@
 
 import './mychessboard.css';
 
+// --------------------------------
+// Constants
+// --------------------------------
+
+const SQUARE_WIDTH = 80 //px
+const BOARD_WIDTH = 8*SQUARE_WIDTH
+
 // -------------------------------- 
 // Own Features
 // --------------------------------
+
+//var isMouseDown = false; // Dragging?
+//var prevX, prevY;
+
+
+// drawboard
+// input: A position object from chess.js
+// output: Draw the whole board (background images and pieces) on the center of the screen 
 
 function drawboard(props) {
     const blocks = []
@@ -17,23 +32,15 @@ function drawboard(props) {
                 piece_img += query_piece.type; 
             } 
             if ((i + j)%2 === 0) {
-                blocks.push(<div className="grid-itemw"
-                        onMouseEnter={
-                            (e) => { 
-                                console.log('mouse over me')
-                            }
-                        }>
+                blocks.push(<div className="grid-itemw" id={`${piece_img}_id`}
+                        >
                         <img src={`${piece_img}.png`} alt=''></img></div>
                     )
             } else {
-                blocks.push(<div className="grid-itemb"
-                        onMouseEnter={
-                            (e) => { 
-                                console.log('mouse over me')
-                            }
-                        }>
-                        <img src={`${piece_img}.png`} alt=''></img></div>
-                    )
+                blocks.push(<div className="grid-itemb" id={`${piece_img}_id`}
+                >
+                <img src={`${piece_img}.png`} alt=''></img></div>
+            )
             }
         }
     return blocks;
@@ -56,20 +63,6 @@ function Mychessboard (props) {
         <div>
             <p>{props.position.fen()}</p>
             <div 
-                onMouseUp={ // Attempt to placing a piece
-                    () => {
-                        console.log('up')
-                    }
-                }
-                onMouseDown={ // Start dragging a piece
-                    (e) => { 
-                        console.log('down')
-                    }
-                }
-                onMouseMove={ // Moving
-                    (e) => { 
-                    }
-                }
                 className="grid-container">
                 {drawboard(props.position)}
             </div>
