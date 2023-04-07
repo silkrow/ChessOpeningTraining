@@ -6,7 +6,7 @@ import './mychessboard.css';
 // Constants
 // --------------------------------
 
-const SQUARE_WIDTH = 80 //px
+const SQUARE_WIDTH = 60 //px
 const BOARD_WIDTH = 8*SQUARE_WIDTH
 
 // -------------------------------- 

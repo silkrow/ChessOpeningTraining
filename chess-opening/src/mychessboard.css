@@ -1,8 +1,13 @@
+:root {
+  --square-width: 60px;
+}
+
+
 .grid-container {
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+    grid-template-columns: var(--square-width) var(--square-width) var(--square-width) var(--square-width) var(--square-width) var(--square-width) var(--square-width) var(--square-width);
   }
   
   .grid-itemw {
