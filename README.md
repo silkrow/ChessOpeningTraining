@@ -9,6 +9,7 @@ To train your chess opening skills
 ## TODO
 - [ ] Find a source of chess opening FENs.
 - [ ] Update the form to support multiple choices (choose training targets from a pool of openings).
+- [ ] Draw gif pictures for banner.
 
 ## Log
 ### 2023.4.8 
