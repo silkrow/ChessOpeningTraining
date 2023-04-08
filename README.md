@@ -7,8 +7,8 @@ To train your chess opening skills
 * [react-chessboard](https://github.com/Clariity/react-chessboard)
 
 ## TODO
-[] Find a source of chess opening FENs.
-[] Update the form to support multiple choices (choose training targets from a pool of openings).
+- [ ] Find a source of chess opening FENs.
+- [ ] Update the form to support multiple choices (choose training targets from a pool of openings).
 
 ## Log
 ### 2023.4.8 
