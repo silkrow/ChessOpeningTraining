@@ -28,7 +28,14 @@ export default function Mychessboard(prop) {
     }
   
     return (<div id="board-container" >
-    <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+    <Chessboard position={game.fen()} 
+    customBoardStyle={{
+      borderRadius: "4px",
+      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+    }}
+    customDarkSquareStyle={{ backgroundColor: "#C71585" }}
+    customLightSquareStyle={{ backgroundColor: "#edeed1" }}
+    onPieceDrop={onDrop} />
     </div>
     );
   }
