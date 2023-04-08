@@ -2,6 +2,14 @@
   --square-width: 60px;
 }
 
+#board-container {
+  width: 480px;
+  margin: 0 auto;
+}
+
+
+
+
 
 .grid-container {
     display: grid;

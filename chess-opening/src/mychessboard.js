@@ -1,73 +1,62 @@
 // Author: Erkai Yu, 2023
 
 import './mychessboard.css';
-
-// --------------------------------
-// Constants
-// --------------------------------
-
-const SQUARE_WIDTH = 60 //px
-const BOARD_WIDTH = 8*SQUARE_WIDTH
-
-// -------------------------------- 
-// Own Features
-// --------------------------------
-
-//var isMouseDown = false; // Dragging?
-//var prevX, prevY;
+import { Chessboard } from "react-chessboard";
+import { useState } from 'react';
+import { Chess } from "chess.js";
 
 
-// drawboard
-// input: A position object from chess.js
-// output: Draw the whole board (background images and pieces) on the center of the screen 
+// RandomMoveEngine
 
-function drawboard(props) {
-    const blocks = []
-    for (var i = 8; i > 0; i--) // i for rows
-        for (var j = 0; j < 8; j++) {// j for columns
-            var piece_img = ''
-            var query_piece = props.get(String.fromCharCode(97+j)+i.toString());
-            if (query_piece !== false) {
-                piece_img += query_piece.color;
-                piece_img += query_piece.type; 
-            } 
-            if ((i + j)%2 === 0) {
-                blocks.push(<div className="grid-itemw" id={`${piece_img}_id`}
-                        >
-                        <img src={`${piece_img}.png`} alt=''></img></div>
-                    )
-            } else {
-                blocks.push(<div className="grid-itemb" id={`${piece_img}_id`}
-                >
-                <img src={`${piece_img}.png`} alt=''></img></div>
-            )
-            }
+
+
+export default function Mychessboard() {
+    const [game, setGame] = useState(new Chess());
+  
+    // function makeAMove(move) {
+    //   //const gameCopy = { ...game };
+    //   const gameCopy = new Chess(game.fen());
+    //   const result = gameCopy.move(move);
+    //   setGame(gameCopy);
+    //   return result; // null if the move was illegal, the move object if the move was legal
+    // }
+  
+    // function makeRandomMove() {
+    //   const possibleMoves = game.moves();
+    //   if (game.isGameOver() || game.isDraw() || possibleMoves.length === 0) return; // exit if the game is over
+    //   const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    //   makeAMove(possibleMoves[randomIndex]);
+    // }
+  
+    function onDrop(sourceSquare, targetSquare) {
+      // const move = makeAMove({
+      //   from: sourceSquare,
+      //   to: targetSquare,
+      //   promotion: "q", // always promote to a queen for example simplicity
+      // });
+
+      const move_made = {from: sourceSquare, to: targetSquare, promotion: "q"}
+      
+      const gameCopy = new Chess(game.fen());
+
+      try {
+        const moveResult = gameCopy.move(move_made);
+        if (!moveResult) {
+          throw new Error('Invalid move');
         }
-    return blocks;
-}
+        console.log(moveResult);
+        console.log(gameCopy.fen());
+      } catch (error) {
+        console.error(error);
+      }
 
-function Mychessboard (props) {
-    if (props.choice === "begin") {
-        props.position.reset();
+      setGame(gameCopy);
+      console.log(game.fen());
+      return true;
     }
-    if (props.choice === "end"){
-        while (!props.position.isGameOver()) {
-            const moves = props.position.moves()
-            const move = moves[Math.floor(Math.random() * moves.length)]
-            props.position.move(move)
-        }
-    }
-
-
-    return (
-        <div>
-            <p>{props.position.fen()}</p>
-            <div 
-                className="grid-container">
-                {drawboard(props.position)}
-            </div>
-        </div>
-    )
-}
-
-export default Mychessboard;
+  
+    return (<div id="board-container" >
+    <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+    </div>
+    );
+  }
