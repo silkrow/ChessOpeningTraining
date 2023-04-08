@@ -1,6 +1,6 @@
 import './App.css';
 import Mychessboard from './mychessboard.js'
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 function App() {
   const [pool, setPool] = useState("human");
@@ -11,9 +11,14 @@ function App() {
     setMyChoice(event.target.value)
   }
 
+  // useMemo is used here to avoid App being rendered twice when new choice is made
+  const memoizedChessboard = useMemo(() => {
+    return <Mychessboard choice={pool} />;
+  }, [pool]);
+
   return (
     <div className="App">
-      <Mychessboard choice={pool} />
+      {memoizedChessboard}
       <form>
         <select value={myChoice} onChange={handleChange}>
           <option value="human">play with human</option>
@@ -23,7 +28,7 @@ function App() {
       <button
         type="button"
         onClick={() => {
-          setPool(myChoice)
+          setPool(myChoice);
           }
         }
       >Set</button>
