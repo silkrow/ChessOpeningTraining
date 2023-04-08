@@ -1,16 +1,11 @@
 import './App.css';
 import Mychessboard from './mychessboard.js'
-import { Chess } from 'chess.js'
 import { useState } from 'react';
 
-const chessgame = new Chess()
-
-console.log(chessgame.pgn())
-
 function App() {
-  const [pool, setPool] = useState("begin");
+  const [pool, setPool] = useState("human");
 
-  const [myChoice, setMyChoice] = useState("begin");
+  const [myChoice, setMyChoice] = useState("human");
   
   const handleChange = (event) => {
     setMyChoice(event.target.value)
@@ -18,11 +13,11 @@ function App() {
 
   return (
     <div className="App">
-      <Mychessboard position={chessgame} choice={pool} />
+      <Mychessboard choice={pool} />
       <form>
         <select value={myChoice} onChange={handleChange}>
-          <option value="begin">Start</option>
-          <option value="end">End</option>
+          <option value="human">play with human</option>
+          <option value="computer">play with random computer</option>
         </select>
       </form>
       <button
