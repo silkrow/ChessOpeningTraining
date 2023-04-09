@@ -9,6 +9,9 @@ const Layout = () => {
             <Link to="/">Main Board</Link>
           </li>
           <li>
+            <Link to="/humanorpc">Play with Human or Random Computer</Link>
+          </li>
+          <li>
             <Link to="/howtouse">How to use</Link>
           </li>
           <li>

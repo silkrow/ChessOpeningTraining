@@ -2,7 +2,7 @@
 
 import './mychessboard.css';
 import { Chessboard } from "react-chessboard";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Chess } from "chess.js";
 
 // --------------------------
@@ -11,8 +11,19 @@ import { Chess } from "chess.js";
 var gameMode = 'human'; // By default, set mode to 'human'
 
 
-export default function Mychessboard() {
+export default function Oldchessboard(prop) {
   const [game, setGame] = useState(new Chess());
+
+  // useEffect is used here to detect the change of prop
+  useEffect(() => {
+    console.log("prop has changed:", prop);
+
+    // Update game mode, reset the game
+    gameMode = prop.choice;
+    setGame(new Chess());
+
+  }, [prop]);
+
 
   function makeComputerMove(copy) {
     const possibleMoves = copy.moves();
