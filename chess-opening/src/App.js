@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 function App() {
 
   useEffect(() => {
-    loadTSVFile("TSV/a.tsv");
+    loadTSVFile("TSV/all.tsv");
   }, []);
 
   const loadTSVFile = (filename) => {
@@ -38,6 +38,7 @@ function App() {
     xhr.open('GET', filename, true);
     xhr.send();
   }
+
 
   return (
     <div className="App">
