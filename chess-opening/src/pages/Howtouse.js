@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
+
 const Howtouse = () => {
+
+  // I'm assuming this would only be loaded when the page is first opened up
   useEffect(() => {
     loadTSVFile("TSV/all.tsv");
   }, []);
@@ -33,6 +36,7 @@ const Howtouse = () => {
     };
     xhr.open('GET', filename, true);
     xhr.send();
+    console.log("loading table for how to use.")
   }
 
   return (

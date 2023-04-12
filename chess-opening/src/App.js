@@ -20,13 +20,14 @@ function App() {
   return (
     <div className="App">
       <Mychessboard />
-      {openings.length > 0 && (
-        <ul>
-          {openings.map((opening, index) => (
-            <li key={index}>{opening.name}</li>
+        {openings.length > 0 && (
+            <select>
+            {openings.map((opening) => (
+            <option value={opening.name}>{opening.name}</option>
           ))}
-        </ul>
-      )}
+            </select>
+        )}
+
     </div>
   );
 }
