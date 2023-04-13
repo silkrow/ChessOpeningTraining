@@ -48,9 +48,9 @@ export default function Oldchessboard(prop) {
       if (!moveResult) {
         throw new Error('Invalid move');
       }
-      console.log(moveResult);
+      //console.log(moveResult);
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       return true;
     }
 

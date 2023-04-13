@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div className="App">
+      <br></br>
       <Mychessboard />
       <h2>Pick Openings to Train!</h2>
       {openings.length > 0 && (

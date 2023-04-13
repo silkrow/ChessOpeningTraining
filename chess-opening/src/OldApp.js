@@ -18,6 +18,7 @@ function OldApp() {
 
   return (
     <div className="App">
+      <br></br>
       {memoizedChessboard}
       <form>
         <select value={myChoice} onChange={handleChange}>
