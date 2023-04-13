@@ -42,11 +42,14 @@ function App() {
         ))}
         </select>
       )}
-      <div className="optioncontainer">
-        <h3>Number of selected openings: {selectedOpenings.size}</h3>
-        {Array.from(selectedOpenings).map((opening) => (
-        <p>{opening}</p>
-        ))}
+      <div>
+        <div className="optioncontainer">
+          <h3>Number of selected openings: {selectedOpenings.size}</h3>
+          {Array.from(selectedOpenings).map((opening) => (
+          <p>{opening}</p>
+          ))}
+        </div>
+        <button className="optionbutton">Start Training</button>
       </div>
     </div>
   );

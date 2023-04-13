@@ -31,18 +31,16 @@
 
 select {
   font-size: 16px;
-  padding: 10px;
-  border: none;
   border-radius: 4px;
   background-color: #f2f2f2;
   color: #333;
-  box-shadow: 0 0 0 2px #ddd;
   cursor: pointer;
+  border: 3px solid var(--style-color);
 }
 
 select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #d109ac;
+  box-shadow: 0 0 0 2px #C71585;
 }
 
 select option {
@@ -50,15 +48,44 @@ select option {
   color: #333;
 }
 
+:root {
+  --option-top: 60px;
+  --option-right: 20px;
+  --option-width: 275px;
+  --option-maxheight: 400px;
+  --option-button-top: 520px;
+  --option-button-right: 100px;
+  --style-color: #C71585;
+}
+
 .optioncontainer {
   position: fixed;
-  top: 60px;
-  right: 20px;
-  width: 300px;
+  top: var(--option-top);
+  right: var(--option-right);
+  width: var(--option-width);
   height: 100%;
   padding: 20px;
   background-color: #f1f1f1;
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: var(--option-maxheight);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 3px solid var(--style-color);
   font-size: 12px;
+}
+
+.optionbutton {
+  position: fixed;
+  height: 30px;
+  width: 140px;
+  font-size: 15px;
+  top: var(--option-button-top);
+  right: var(--option-button-right);
+  color:#f1f1f1;
+  background-color: #C71585;
+}
+
+.optionbutton:hover {
+  cursor: pointer;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
