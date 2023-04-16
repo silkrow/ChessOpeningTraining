@@ -35,3 +35,7 @@ The website now supports:
 3. A block indicating numbers of openings left on the left side of the webpage.
 4. **The first** randomly picked opening from user's choice can be trained, with user being white.
 5. Since the left block couldn't print the name of the current opening yet, use ```console.log``` to see the pgn of the opening being trained.
+
+Issues:
+1. Right now Mychessboard can't tell App that one opening has been done, so there's always only one opening being trained.
+2. Note that there are **still some synchronization issues** when the number of selected openings is too small. Also, the "number of openings left" is sometimes incorrect, I'm guessing this being the issue of asynchronization in App.js.
