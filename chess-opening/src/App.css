@@ -55,6 +55,7 @@ select option {
   --option-maxheight: 400px;
   --option-button-top: 520px;
   --option-button-right: 100px;
+  --ongoing-height: 120px;
   --style-color: #C71585;
 }
 
@@ -72,6 +73,23 @@ select option {
   border-bottom-left-radius: 20px;
   border: 3px solid var(--style-color);
   font-size: 12px;
+}
+
+.ongoing-left{
+  position: fixed;
+  top: var(--option-top);
+  left: var(--option-right);
+  width: var(--option-width);
+  height: var(--ongoing-height);
+  padding: 20px;
+  background-color: #f1f1f1;
+  max-height: var(--option-maxheight);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 3px solid var(--style-color);
+  font-size: 16px;
 }
 
 .optionbutton {

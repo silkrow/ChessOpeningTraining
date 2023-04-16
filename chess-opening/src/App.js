@@ -33,6 +33,9 @@ function App() {
   return (
     <div className="App">
       <br></br>
+      <div className="ongoing-left">
+        <h2>Ongoing Opening</h2>
+      </div>
       <Mychessboard pool={openingPool}/>
       <h2>Pick Openings to Train!</h2>
       {openings.length > 0 && 
