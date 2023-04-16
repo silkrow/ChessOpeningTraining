@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 
 # Download and save a.tsv
 url = "https://github.com/silkrow/chess-openings-database/raw/master/a.tsv"
@@ -70,3 +71,13 @@ with open(all_filename, "w") as all_file:
                 all_file.write(line)
 
 print(f"All files saved as {all_filename}")
+
+# Append an index column
+# Read the TSV file into a pandas DataFrame
+df = pd.read_csv(all_filename, sep='\t')
+
+# Add a new column for the index
+df.insert(0, 'Index', range(len(df)))
+
+# Save the DataFrame back to a TSV file
+df.to_csv(all_filename, sep='\t', index=False)

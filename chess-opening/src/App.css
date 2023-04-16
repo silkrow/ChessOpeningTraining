@@ -58,7 +58,7 @@ select option {
   --style-color: #C71585;
 }
 
-.optioncontainer {
+.optioncontainer-right {
   position: fixed;
   top: var(--option-top);
   right: var(--option-right);

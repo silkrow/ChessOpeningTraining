@@ -11,8 +11,10 @@ import { Chess } from "chess.js";
 var gameMode = 'human'; // By default, set mode to 'human'
 
 
-export default function Mychessboard() {
+export default function Mychessboard(pool) {
   const [game, setGame] = useState(new Chess());
+
+  console.log(pool);
 
   function makeComputerMove(copy) {
     const possibleMoves = copy.moves();

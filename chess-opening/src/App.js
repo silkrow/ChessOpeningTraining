@@ -6,6 +6,7 @@ import * as d3 from "d3";
 function App() {
   const [openings, setOpenings] = useState([]);
   const [selectedOpenings, setSelectedOpenings] = useState(new Set());
+  const [openingPool, setOpeningPool] = useState(new Set());
   const [loadflag, setLoadflag] = useState(false); // prevent multiple loading
 
   useEffect(() => {
@@ -26,30 +27,34 @@ function App() {
       newSelectedOpenings.add(optionValue);
     }
     setSelectedOpenings(newSelectedOpenings);
-    // console.log(selectedOpenings);
   };
 
 
   return (
     <div className="App">
       <br></br>
-      <Mychessboard />
+      <Mychessboard pool={openingPool}/>
       <h2>Pick Openings to Train!</h2>
-      {openings.length > 0 && (
+      {openings.length > 0 && 
+        (openingPool.size === 0 ? (
         <select size={20} multiple={true} value={[...selectedOpenings]} onChange={handleSelectChange}>
         {openings.map((opening) => (
-          <option value={opening.name}>{opening.name}</option>
+          <option value={opening.Index+". "+opening.name}>{opening.Index+". "+opening.name}</option>
         ))}
         </select>
-      )}
+        ):(<p>Training started!</p>))}
       <div>
-        <div className="optioncontainer">
+        <div className="optioncontainer-right">
           <h3>Number of selected openings: {selectedOpenings.size}</h3>
           {Array.from(selectedOpenings).map((opening) => (
           <p>{opening}</p>
           ))}
         </div>
-        <button className="optionbutton">Start Training</button>
+        <button className="optionbutton" 
+        onClick={() => {
+          setOpeningPool(selectedOpenings);
+        }}
+          >Start Training</button>
       </div>
     </div>
   );
