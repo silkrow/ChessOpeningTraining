@@ -2,50 +2,77 @@
 
 import './mychessboard.css';
 import { Chessboard } from "react-chessboard";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Chess } from "chess.js";
 
-var gameMode = 'human'; // By default, set mode to 'human'
-
-export default function Mychessboard(pool) {
+export default function Mychessboard(prop) {
   const [game, setGame] = useState(new Chess())
+  const [humanIndex, setHumanIndex] = useState(0);
+  const [computerIndex, setComputerIndex] = useState(1);
+
+  useEffect(() => {
+    makeComputerMove(game);
+  }, [humanIndex]); // Run makeComputerMove() whenever humanIndex changes
+
+  const pgnParser = new Chess();
+  console.log(prop.choice);
+  if (typeof prop.choice !== 'string') {
+    console.error('Prop is not a string!');
+    return;
+  }
+  const pgn = prop.choice.trim();
+  pgnParser.loadPgn(pgn);
+  const moves = pgnParser.history(); // This should return an array containing all the moves (white is even, black is odd)
 
   function makeComputerMove(copy) {
+    if (computerIndex > humanIndex) {
+      return; // No move should be made.
+    }
     const possibleMoves = copy.moves();
     if (copy.isGameOver() || copy.isDraw() || possibleMoves.length === 0) return; // exit if the game is over
-    const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    const move = moves[computerIndex];
+    //const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    const index = possibleMoves.indexOf(move);
+    if (index === -1) return; // Illegal!
     setTimeout(() => {
       const gameCopy = new Chess(copy.fen());
-      gameCopy.move(possibleMoves[randomIndex]);
+      //gameCopy.move(possibleMoves[randomIndex]);
+      gameCopy.move(move);
       setGame(gameCopy);
+      setComputerIndex(computerIndex+2); // skip user's index
     }, 200);
   }
 
   function onDrop(sourceSquare, targetSquare) {
     const move_made = {from: sourceSquare, to: targetSquare, promotion: "q"}
       
-    // Use a copy to update the board
-    const gameCopy = new Chess(game.fen());
+    // Use a copy to update the board, verify if gameCopy === correctCopy to see if user is correct
+    //var gameCopy = new Chess(game.fen());
+    const userCopy = new Chess(game.fen());
+    const correctCopy = new Chess(game.fen()); 
 
     // Use try feature, therefore error caused by illegal move won't crash the program 
     try {
-      const moveResult = gameCopy.move(move_made);
+      const move_san = moves[humanIndex];
+      const moveResult = userCopy.move(move_made);
       if (!moveResult) {
         throw new Error('Invalid move');
       }
-      //console.log(moveResult);
+      correctCopy.move(move_san);
+
+      if (correctCopy.fen() !== userCopy.fen()) {
+        console.log("incorrect move!");
+        throw new Error("Incorrect answer");
+      } 
     } catch (error) {
       //console.error(error);
       return true;
     }
 
-    setGame(gameCopy); // Update game
-
-    if (gameMode === 'computer') {
-      makeComputerMove(gameCopy); // Tell computer the latest game state
-    }
-
-
+    setGame(userCopy); // Update game
+    //console.log("correct!")
+    setHumanIndex(humanIndex + 2); // Skip computer's move
+    //makeComputerMove(userCopy); // Tell computer the latest game state
     return true;
   }
   
