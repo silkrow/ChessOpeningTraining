@@ -5,16 +5,10 @@ import { Chessboard } from "react-chessboard";
 import { useState } from 'react';
 import { Chess } from "chess.js";
 
-// --------------------------
-// Varibles
-// --------------------------
 var gameMode = 'human'; // By default, set mode to 'human'
 
-
 export default function Mychessboard(pool) {
-  const [game, setGame] = useState(new Chess());
-
-  console.log(pool);
+  const [game, setGame] = useState(new Chess())
 
   function makeComputerMove(copy) {
     const possibleMoves = copy.moves();

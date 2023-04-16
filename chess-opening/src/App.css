@@ -30,7 +30,7 @@
 
 
 select {
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 4px;
   background-color: #f2f2f2;
   color: #333;
@@ -51,10 +51,10 @@ select option {
 :root {
   --option-top: 60px;
   --option-right: 20px;
-  --option-width: 275px;
+  --option-width: 200px;
   --option-maxheight: 400px;
   --option-button-top: 520px;
-  --option-button-right: 100px;
+  --option-button-right: 70px;
   --ongoing-height: 120px;
   --style-color: #C71585;
 }
@@ -81,13 +81,13 @@ select option {
   left: var(--option-right);
   width: var(--option-width);
   height: var(--ongoing-height);
-  padding: 20px;
+  padding: 15px;
   background-color: #f1f1f1;
   max-height: var(--option-maxheight);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   border: 3px solid var(--style-color);
   font-size: 16px;
 }
